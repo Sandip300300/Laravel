@@ -1,0 +1,21 @@
+//gat all data from database
+
+$posts=DB::table('posts')->get();
+
+///Post created
+ public function submit(Request $request)
+    {
+        DB::table('posts')->insert([
+            'title'=>$request->title,
+            'body'=>$request->body
+
+        ]);
+        return back()->with('created','Post created');
+    }
+    
+// session
+@if (Session::has('created'))
+                            <button type="button" class="btn btn-success">
+                                {{Session::get('created')}}
+                            </button>
+ @endif
