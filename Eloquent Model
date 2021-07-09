@@ -1,8 +1,8 @@
 ///fetch all data
- public function index()
+ public function allpost()
     {
-        $result=Student::all();
-        return $result;
+        $posts=Post::orderBy('id','DESC')->get();
+        return view('posts',compact('posts'));
     }
     
   ////using where in orm
@@ -11,3 +11,17 @@
         $result=Student::where('id',1)->get();
         return $result;
     }
+    
+   ////add post in orm
+   
+     public function addpost(Request $request)
+    {
+        $posts= new Post();
+        $posts->title=$request->title;
+        $posts->body=$request->body;
+        $posts->save();
+        return back()->with('add','Post has been added');
+
+    }
+    
+    
