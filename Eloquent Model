@@ -1,0 +1,13 @@
+///fetch all data
+ public function index()
+    {
+        $result=Student::all();
+        return $result;
+    }
+    
+  ////using where in orm
+     public function index()
+    {
+        $result=Student::where('id',1)->get();
+        return $result;
+    }
