@@ -24,4 +24,29 @@
 
     }
     
+    ///delete post
+    
+      public function deletePost($id)
+    {
+        Post::where('id',$id)->delete();
+        return back()->with('delete','Post has been deleted');
+    }
+    
+    ////update post
+    
+     public function getallpostbyID($id)
+    {
+        $posts=Post::where('id',$id)->first();
+        return view('single-post',compact('posts'));
+    }
+    
+     public function editpost(Request $request)
+    {
+        $posts= Post::find($request->id);
+        $posts->title=$request->title;
+        $posts->body=$request->body;
+        $posts->save();
+        return back()->with('update','Post has been updated');
+
+    }
     
